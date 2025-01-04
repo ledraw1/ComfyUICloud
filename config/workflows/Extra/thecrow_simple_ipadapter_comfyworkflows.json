@@ -1,0 +1,671 @@
+{
+  "last_node_id": 715,
+  "last_link_id": 1006,
+  "nodes": [
+    {
+      "id": 708,
+      "type": "KSampler",
+      "pos": [
+        1518,
+        585
+      ],
+      "size": {
+        "0": 315,
+        "1": 474
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 994,
+          "slot_index": 0
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 995
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 996
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 997
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            991
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        254137106415358,
+        "randomize",
+        35,
+        2.5,
+        "dpmpp_3m_sde",
+        "exponential",
+        1
+      ]
+    },
+    {
+      "id": 702,
+      "type": "CLIPTextEncode",
+      "pos": [
+        1202,
+        588
+      ],
+      "size": [
+        272.8189988273532,
+        114.45344555827216
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 989,
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            995
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Positive prompt",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "Cosmic entity of wisdom and knowledge, holding the planet earth in his hands, masterpiece, beautiful cosmic backdrop, high quality, 8KUHD"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 703,
+      "type": "CLIPTextEncode",
+      "pos": [
+        1216,
+        758
+      ],
+      "size": [
+        238.441578931835,
+        122.93532219862209
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 990
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            996
+          ],
+          "slot_index": 0
+        }
+      ],
+      "title": "Negative prompt",
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "disproportional, Octane render, smudge, blurred, Low resolution, worst quality"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 701,
+      "type": "EmptyLatentImage",
+      "pos": [
+        1242,
+        940
+      ],
+      "size": [
+        210,
+        106
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            997
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        512,
+        512,
+        1
+      ]
+    },
+    {
+      "id": 711,
+      "type": "IPAdapter",
+      "pos": [
+        1711,
+        7
+      ],
+      "size": [
+        218.86677574048053,
+        190
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 999
+        },
+        {
+          "name": "ipadapter",
+          "type": "IPADAPTER",
+          "link": 1000
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 1001
+        },
+        {
+          "name": "attn_mask",
+          "type": "MASK",
+          "link": 1006
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            994
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "IPAdapter"
+      },
+      "widgets_values": [
+        1,
+        0,
+        1,
+        "standard"
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 709,
+      "type": "LoadImage",
+      "pos": [
+        1165,
+        132
+      ],
+      "size": [
+        315,
+        314.00000381469727
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            1001
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            1006
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "clipspace/clipspace-mask-8919787.png [input]",
+        "image"
+      ],
+      "color": "#233",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 712,
+      "type": "Note",
+      "pos": [
+        850,
+        -4
+      ],
+      "size": [
+        281.6920652845074,
+        110.26702390051125
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "For IPAdapter to work you need to download models labeled as\n\"You can use this model in the ComfyUI IPAdapter plus extension.\"\nThese can be find in the 'download models' section of comfy manager by searching 'ipadapter'\n\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 710,
+      "type": "IPAdapterUnifiedLoader",
+      "pos": [
+        1165,
+        9
+      ],
+      "size": [
+        240.97851028563673,
+        78
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 998,
+          "slot_index": 0
+        },
+        {
+          "name": "ipadapter",
+          "type": "IPADAPTER",
+          "link": null,
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            999
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "ipadapter",
+          "type": "IPADAPTER",
+          "links": [
+            1000
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "IPAdapterUnifiedLoader"
+      },
+      "widgets_values": [
+        "PLUS (high strength)"
+      ],
+      "color": "#233",
+      "bgcolor": "#355",
+      "shape": 2
+    },
+    {
+      "id": 713,
+      "type": "Note",
+      "pos": [
+        1420,
+        -2
+      ],
+      "size": [
+        239.4879284785784,
+        80.06978177113064
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "For sd1.5 all of the unified loader models except VIT-G will work. VIT-G also appears to be the only one working for SDXL. "
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 714,
+      "type": "Note",
+      "pos": [
+        1526,
+        259
+      ],
+      "size": [
+        266.53803885817956,
+        93.16310785378471
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "properties": {
+        "text": ""
+      },
+      "widgets_values": [
+        "The mask to attn_mask connection should be disconnected when you do not have the image masked. Experiment with different masking and ipadapter combinations to find what works for your usecase!"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 706,
+      "type": "SaveImage",
+      "pos": [
+        1953,
+        659
+      ],
+      "size": [
+        422.6141106238615,
+        473.0347526134442
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 993
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI"
+      ]
+    },
+    {
+      "id": 704,
+      "type": "VAEDecode",
+      "pos": [
+        1951,
+        556
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 991
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 992,
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            993
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 705,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        810,
+        622
+      ],
+      "size": {
+        "0": 343.69647216796875,
+        "1": 98
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            998
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            989,
+            990
+          ],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            992
+          ],
+          "shape": 3,
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "dreamshaper_8.safetensors"
+      ]
+    }
+  ],
+  "links": [
+    [
+      989,
+      705,
+      1,
+      702,
+      0,
+      "CLIP"
+    ],
+    [
+      990,
+      705,
+      1,
+      703,
+      0,
+      "CLIP"
+    ],
+    [
+      991,
+      708,
+      0,
+      704,
+      0,
+      "LATENT"
+    ],
+    [
+      992,
+      705,
+      2,
+      704,
+      1,
+      "VAE"
+    ],
+    [
+      993,
+      704,
+      0,
+      706,
+      0,
+      "IMAGE"
+    ],
+    [
+      994,
+      711,
+      0,
+      708,
+      0,
+      "MODEL"
+    ],
+    [
+      995,
+      702,
+      0,
+      708,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      996,
+      703,
+      0,
+      708,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      997,
+      701,
+      0,
+      708,
+      3,
+      "LATENT"
+    ],
+    [
+      998,
+      705,
+      0,
+      710,
+      0,
+      "MODEL"
+    ],
+    [
+      999,
+      710,
+      0,
+      711,
+      0,
+      "MODEL"
+    ],
+    [
+      1000,
+      710,
+      1,
+      711,
+      1,
+      "IPADAPTER"
+    ],
+    [
+      1001,
+      709,
+      0,
+      711,
+      2,
+      "IMAGE"
+    ],
+    [
+      1006,
+      709,
+      1,
+      711,
+      3,
+      "MASK"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Simple IPAdapter",
+      "bounding": [
+        1152,
+        -66,
+        786,
+        522
+      ],
+      "color": "#a1309b",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {
+    "info": {
+      "name": "workflow",
+      "author": "",
+      "description": "",
+      "version": "1",
+      "created": "2024-04-06T21:45:15.420Z",
+      "modified": "2024-04-10T18:34:56.800Z",
+      "software": "ComfyUI"
+    }
+  },
+  "version": 0.4
+}

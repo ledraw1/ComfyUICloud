@@ -1,0 +1,1499 @@
+{
+  "extra": {
+    "ds": {
+      "scale": 0.5644739300537773,
+      "offset": [
+        2109.849176000001,
+        378.86264700000027
+      ]
+    }
+  },
+  "links": [
+    [
+      54,
+      20,
+      0,
+      30,
+      0,
+      "CLIP"
+    ],
+    [
+      132,
+      59,
+      1,
+      60,
+      0,
+      "VAE"
+    ],
+    [
+      134,
+      60,
+      0,
+      44,
+      0,
+      "IMAGE"
+    ],
+    [
+      141,
+      59,
+      1,
+      62,
+      0,
+      "VAE"
+    ],
+    [
+      142,
+      37,
+      0,
+      62,
+      1,
+      "IMAGE"
+    ],
+    [
+      144,
+      59,
+      0,
+      63,
+      0,
+      "COGVIDEOMODEL"
+    ],
+    [
+      145,
+      30,
+      0,
+      63,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      146,
+      31,
+      0,
+      63,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      147,
+      62,
+      0,
+      63,
+      4,
+      "LATENT"
+    ],
+    [
+      148,
+      63,
+      0,
+      60,
+      1,
+      "LATENT"
+    ],
+    [
+      149,
+      30,
+      1,
+      31,
+      0,
+      "CLIP"
+    ],
+    [
+      152,
+      64,
+      0,
+      68,
+      0,
+      "MODEL"
+    ],
+    [
+      153,
+      68,
+      0,
+      67,
+      0,
+      "MODEL"
+    ],
+    [
+      154,
+      67,
+      0,
+      66,
+      0,
+      "MODEL"
+    ],
+    [
+      155,
+      66,
+      0,
+      77,
+      0,
+      "MODEL"
+    ],
+    [
+      156,
+      64,
+      2,
+      79,
+      1,
+      "VAE"
+    ],
+    [
+      158,
+      71,
+      0,
+      76,
+      1,
+      "STRING"
+    ],
+    [
+      159,
+      76,
+      0,
+      77,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      160,
+      72,
+      0,
+      75,
+      1,
+      "STRING"
+    ],
+    [
+      161,
+      75,
+      0,
+      77,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      164,
+      77,
+      0,
+      79,
+      0,
+      "LATENT"
+    ],
+    [
+      165,
+      79,
+      0,
+      80,
+      0,
+      "IMAGE"
+    ],
+    [
+      166,
+      79,
+      0,
+      37,
+      0,
+      "IMAGE"
+    ],
+    [
+      167,
+      64,
+      1,
+      76,
+      0,
+      "CLIP"
+    ],
+    [
+      168,
+      64,
+      1,
+      75,
+      0,
+      "CLIP"
+    ],
+    [
+      169,
+      82,
+      0,
+      77,
+      3,
+      "LATENT"
+    ],
+    [
+      170,
+      83,
+      0,
+      77,
+      4,
+      "INT"
+    ]
+  ],
+  "nodes": [
+    {
+      "id": 31,
+      "pos": {
+        "0": 497,
+        "1": 520
+      },
+      "mode": 0,
+      "size": {
+        "0": 463.0125122070313,
+        "1": 144
+      },
+      "type": "CogVideoTextEncode",
+      "flags": {},
+      "order": 12,
+      "inputs": [
+        {
+          "link": 149,
+          "name": "clip",
+          "type": "CLIP",
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "label": "conditioning",
+          "links": [
+            146
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "label": "clip",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CogVideoTextEncode"
+      },
+      "widgets_values": [
+        "",
+        1,
+        true
+      ]
+    },
+    {
+      "id": 62,
+      "pos": {
+        "0": 1149,
+        "1": 711
+      },
+      "mode": 0,
+      "size": {
+        "0": 315,
+        "1": 194
+      },
+      "type": "CogVideoImageEncode",
+      "flags": {},
+      "order": 18,
+      "inputs": [
+        {
+          "link": 141,
+          "name": "vae",
+          "type": "VAE",
+          "label": "vae"
+        },
+        {
+          "link": 142,
+          "name": "start_image",
+          "type": "IMAGE",
+          "label": "start_image"
+        },
+        {
+          "link": null,
+          "name": "end_image",
+          "type": "IMAGE",
+          "label": "end_image",
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "label": "samples",
+          "links": [
+            147
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CogVideoImageEncode"
+      },
+      "widgets_values": [
+        false,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 60,
+      "pos": {
+        "0": 1523,
+        "1": -6
+      },
+      "mode": 0,
+      "size": {
+        "0": 315,
+        "1": 198
+      },
+      "type": "CogVideoDecode",
+      "flags": {},
+      "order": 20,
+      "inputs": [
+        {
+          "link": 132,
+          "name": "vae",
+          "type": "VAE",
+          "label": "vae"
+        },
+        {
+          "link": 148,
+          "name": "samples",
+          "type": "LATENT",
+          "label": "samples"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "label": "images",
+          "links": [
+            134
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CogVideoDecode"
+      },
+      "widgets_values": [
+        true,
+        240,
+        360,
+        0.2,
+        0.2,
+        true
+      ]
+    },
+    {
+      "id": 80,
+      "pos": {
+        "0": -853.4602661132812,
+        "1": 493.1794738769531
+      },
+      "mode": 0,
+      "size": {
+        "0": 493.202392578125,
+        "1": 512.8615112304688
+      },
+      "type": "PreviewImage",
+      "flags": {},
+      "order": 16,
+      "inputs": [
+        {
+          "link": 165,
+          "name": "images",
+          "type": "IMAGE",
+          "label": "images"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 68,
+      "pos": {
+        "0": -2352.458984375,
+        "1": 299.1793518066406
+      },
+      "mode": 4,
+      "size": {
+        "0": 315,
+        "1": 150
+      },
+      "type": "TensorArt_LoraLoader",
+      "flags": {},
+      "order": 7,
+      "inputs": [
+        {
+          "link": 152,
+          "name": "model",
+          "type": "MODEL",
+          "label": "model"
+        },
+        {
+          "link": null,
+          "name": "clip",
+          "type": "CLIP",
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "label": "MODEL",
+          "links": [
+            153
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "label": "CLIP",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TensorArt_LoraLoader"
+      },
+      "widgets_values": [
+        "",
+        "",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 67,
+      "pos": {
+        "0": -2017.459228515625,
+        "1": 301.1793518066406
+      },
+      "mode": 4,
+      "size": {
+        "0": 315,
+        "1": 150
+      },
+      "type": "TensorArt_LoraLoader",
+      "flags": {},
+      "order": 11,
+      "inputs": [
+        {
+          "link": 153,
+          "name": "model",
+          "type": "MODEL",
+          "label": "model"
+        },
+        {
+          "link": null,
+          "name": "clip",
+          "type": "CLIP",
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "label": "MODEL",
+          "links": [
+            154
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "label": "CLIP",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TensorArt_LoraLoader"
+      },
+      "widgets_values": [
+        "",
+        "",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 66,
+      "pos": {
+        "0": -1678.4600830078125,
+        "1": 301.1793518066406
+      },
+      "mode": 4,
+      "size": {
+        "0": 315,
+        "1": 150
+      },
+      "type": "TensorArt_LoraLoader",
+      "flags": {},
+      "order": 13,
+      "inputs": [
+        {
+          "link": 154,
+          "name": "model",
+          "type": "MODEL",
+          "label": "model"
+        },
+        {
+          "link": null,
+          "name": "clip",
+          "type": "CLIP",
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "label": "MODEL",
+          "links": [
+            155
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "label": "CLIP",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TensorArt_LoraLoader"
+      },
+      "widgets_values": [
+        "",
+        "",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 79,
+      "pos": {
+        "0": -853.4602661132812,
+        "1": 400.1794128417969
+      },
+      "mode": 0,
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "type": "VAEDecode",
+      "flags": {},
+      "order": 15,
+      "inputs": [
+        {
+          "link": 164,
+          "name": "samples",
+          "type": "LATENT",
+          "label": "samples"
+        },
+        {
+          "link": 156,
+          "name": "vae",
+          "type": "VAE",
+          "label": "vae"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "label": "IMAGE",
+          "links": [
+            165,
+            166
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 44,
+      "pos": {
+        "0": 1884,
+        "1": -6
+      },
+      "mode": 0,
+      "size": [
+        605.3909912109375,
+        310
+      ],
+      "type": "VHS_VideoCombine",
+      "flags": {},
+      "order": 21,
+      "inputs": [
+        {
+          "link": 134,
+          "name": "images",
+          "type": "IMAGE",
+          "label": "images"
+        },
+        {
+          "link": null,
+          "name": "audio",
+          "type": "AUDIO",
+          "label": "audio",
+          "shape": 7
+        },
+        {
+          "link": null,
+          "name": "meta_batch",
+          "type": "VHS_BatchManager",
+          "label": "meta_batch",
+          "shape": 7
+        },
+        {
+          "link": null,
+          "name": "vae",
+          "type": "VAE",
+          "label": "vae",
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "label": "Filenames",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_VideoCombine"
+      },
+      "widgets_values": {
+        "crf": 19,
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "pingpong": false,
+        "frame_rate": 8,
+        "loop_count": 0,
+        "save_output": true,
+        "videopreview": {
+          "muted": false,
+          "hidden": false,
+          "params": {
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "filename": "CogVideoX-I2V_00001.mp4",
+            "subfolder": "",
+            "frame_rate": 8
+          },
+          "paused": false
+        },
+        "save_metadata": true,
+        "filename_prefix": "CogVideoX-I2V"
+      }
+    },
+    {
+      "id": 59,
+      "pos": {
+        "0": 622,
+        "1": -25
+      },
+      "mode": 0,
+      "size": {
+        "0": 315,
+        "1": 218
+      },
+      "type": "DownloadAndLoadCogVideoModel",
+      "flags": {},
+      "order": 0,
+      "inputs": [
+        {
+          "link": null,
+          "name": "block_edit",
+          "type": "TRANSFORMERBLOCKS",
+          "label": "block_edit",
+          "shape": 7
+        },
+        {
+          "link": null,
+          "name": "lora",
+          "type": "COGLORA",
+          "label": "lora",
+          "shape": 7
+        },
+        {
+          "link": null,
+          "name": "compile_args",
+          "type": "COMPILEARGS",
+          "label": "compile_args",
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "COGVIDEOMODEL",
+          "label": "model",
+          "links": [
+            144
+          ]
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "label": "vae",
+          "links": [
+            132,
+            141
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DownloadAndLoadCogVideoModel"
+      },
+      "widgets_values": [
+        "THUDM/CogVideoX-5b-I2V",
+        "bf16",
+        "disabled",
+        false,
+        "sdpa",
+        "main_device"
+      ]
+    },
+    {
+      "id": 64,
+      "pos": {
+        "0": -1687.4600830078125,
+        "1": 89.17967224121094
+      },
+      "mode": 0,
+      "size": {
+        "0": 327.5999755859375,
+        "1": 164
+      },
+      "type": "TensorArt_CheckpointLoader",
+      "flags": {},
+      "order": 1,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "label": "MODEL",
+          "links": [
+            152
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "label": "CLIP",
+          "links": [
+            167,
+            168
+          ],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "label": "VAE",
+          "links": [
+            156
+          ],
+          "shape": 3,
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TensorArt_CheckpointLoader"
+      },
+      "widgets_values": [
+        "706485991197825616",
+        "AnimagineXL - 3.1"
+      ]
+    },
+    {
+      "id": 77,
+      "pos": {
+        "0": -909.4602661132812,
+        "1": 91.17967224121094
+      },
+      "mode": 0,
+      "size": {
+        "0": 315,
+        "1": 262
+      },
+      "type": "KSampler",
+      "flags": {},
+      "order": 14,
+      "inputs": [
+        {
+          "link": 155,
+          "name": "model",
+          "type": "MODEL",
+          "label": "model"
+        },
+        {
+          "link": 159,
+          "name": "positive",
+          "type": "CONDITIONING",
+          "label": "positive"
+        },
+        {
+          "link": 161,
+          "name": "negative",
+          "type": "CONDITIONING",
+          "label": "negative"
+        },
+        {
+          "link": 169,
+          "name": "latent_image",
+          "type": "LATENT",
+          "label": "latent_image"
+        },
+        {
+          "link": 170,
+          "name": "seed",
+          "type": "INT",
+          "label": "seed",
+          "widget": {
+            "name": "seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "label": "LATENT",
+          "links": [
+            164
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        843432451087159,
+        "randomize",
+        25,
+        7,
+        "euler_ancestral",
+        "normal",
+        1
+      ]
+    },
+    {
+      "id": 72,
+      "pos": {
+        "0": -1335,
+        "1": 329
+      },
+      "mode": 0,
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "type": "TensorArt_PromptText",
+      "color": "#322",
+      "flags": {},
+      "order": 2,
+      "title": "Negative",
+      "inputs": [],
+      "bgcolor": "#533",
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "label": "STRING",
+          "links": [
+            160
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TensorArt_PromptText"
+      },
+      "widgets_values": [
+        "deformed, blurry, depth of field, lowres, (bad), text, error, fewer, extra, missing, worst quality, jpeg artifacts, low quality, watermark, unfinished, displeasing, oldest, early, chromatic aberration, signature, extra digits, artistic error, username, scan, (interlocked fingers), (poorly drawn eyes), (out of frame), bad anatomy, bad hands, poorly drawn hands, mutated hands, extra fingers, four fingers, six fingers, extra limbs, extra hands, long fingers"
+      ]
+    },
+    {
+      "id": 83,
+      "pos": {
+        "0": -568,
+        "1": 100
+      },
+      "mode": 0,
+      "size": {
+        "0": 315,
+        "1": 82
+      },
+      "type": "TensorArt_Seed",
+      "flags": {},
+      "order": 3,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "value",
+          "type": "INT",
+          "label": "value",
+          "links": [
+            170
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TensorArt_Seed"
+      },
+      "widgets_values": [
+        581014961291376,
+        "randomize"
+      ]
+    },
+    {
+      "id": 76,
+      "pos": {
+        "0": -1315,
+        "1": 570
+      },
+      "mode": 0,
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "type": "CLIPTextEncode",
+      "color": "#232",
+      "flags": {
+        "collapsed": true
+      },
+      "order": 10,
+      "inputs": [
+        {
+          "link": 167,
+          "name": "clip",
+          "type": "CLIP",
+          "label": "clip"
+        },
+        {
+          "link": 158,
+          "name": "text",
+          "type": "STRING",
+          "label": "text",
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "bgcolor": "#353",
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "label": "CONDITIONING",
+          "links": [
+            159
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 75,
+      "pos": {
+        "0": -1319,
+        "1": 613
+      },
+      "mode": 0,
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "type": "CLIPTextEncode",
+      "color": "#322",
+      "flags": {
+        "collapsed": true
+      },
+      "order": 8,
+      "inputs": [
+        {
+          "link": 168,
+          "name": "clip",
+          "type": "CLIP",
+          "label": "clip"
+        },
+        {
+          "link": 160,
+          "name": "text",
+          "type": "STRING",
+          "label": "text",
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "bgcolor": "#533",
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "label": "CONDITIONING",
+          "links": [
+            161
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 37,
+      "pos": {
+        "0": 784,
+        "1": 731
+      },
+      "mode": 0,
+      "size": {
+        "0": 315,
+        "1": 266
+      },
+      "type": "ImageResizeKJ",
+      "flags": {},
+      "order": 17,
+      "inputs": [
+        {
+          "link": 166,
+          "name": "image",
+          "type": "IMAGE",
+          "label": "image"
+        },
+        {
+          "link": null,
+          "name": "get_image_size",
+          "type": "IMAGE",
+          "label": "get_image_size",
+          "shape": 7
+        },
+        {
+          "link": null,
+          "name": "width_input",
+          "type": "INT",
+          "label": "width_input",
+          "widget": {
+            "name": "width_input"
+          }
+        },
+        {
+          "link": null,
+          "name": "height_input",
+          "type": "INT",
+          "label": "height_input",
+          "widget": {
+            "name": "height_input"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "label": "IMAGE",
+          "links": [
+            142
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "label": "width",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "label": "height",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageResizeKJ"
+      },
+      "widgets_values": [
+        720,
+        480,
+        "lanczos",
+        false,
+        16,
+        0,
+        0,
+        "disabled"
+      ]
+    },
+    {
+      "id": 82,
+      "pos": {
+        "0": -1686,
+        "1": 500
+      },
+      "mode": 0,
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "type": "EmptyLatentImage",
+      "flags": {},
+      "order": 4,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "label": "LATENT",
+          "links": [
+            169
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1152,
+        768,
+        1
+      ]
+    },
+    {
+      "id": 20,
+      "pos": {
+        "0": -2,
+        "1": 304
+      },
+      "mode": 0,
+      "size": {
+        "0": 451.3054809570313,
+        "1": 82
+      },
+      "type": "CLIPLoader",
+      "flags": {},
+      "order": 5,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "label": "CLIP",
+          "links": [
+            54
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "t5xxl_fp8_e4m3fn.safetensors",
+        "sd3"
+      ]
+    },
+    {
+      "id": 71,
+      "pos": {
+        "0": -1336,
+        "1": 82
+      },
+      "mode": 0,
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "type": "TensorArt_PromptText",
+      "color": "#232",
+      "flags": {},
+      "order": 6,
+      "title": "Positive",
+      "inputs": [],
+      "bgcolor": "#353",
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "label": "STRING",
+          "links": [
+            158
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "TensorArt_PromptText"
+      },
+      "widgets_values": [
+        "masterpiece, best quality, very aesthetic, absurdres, 1girl, solo, nekomimi, big breasts, yellow eyes, gray hair, black dress, puffy sleeves, white apron, white bonnet, soft smile, upper body, simple background"
+      ]
+    },
+    {
+      "id": 30,
+      "pos": {
+        "0": 493,
+        "1": 303
+      },
+      "mode": 0,
+      "size": {
+        "0": 471.90142822265625,
+        "1": 168.08047485351562
+      },
+      "type": "CogVideoTextEncode",
+      "flags": {},
+      "order": 9,
+      "inputs": [
+        {
+          "link": 54,
+          "name": "clip",
+          "type": "CLIP",
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "label": "conditioning",
+          "links": [
+            145
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "label": "clip",
+          "links": [
+            149
+          ],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CogVideoTextEncode"
+      },
+      "widgets_values": [
+        "A solitary young woman with enchanting nekomimi ears, prominent features, and a soft smile graces the frame. Her striking yellow eyes gleam with warmth, complementing her sleek, flowing gray hair. She is adorned in a sophisticated black dress with elegant puffy sleeves, layered over a pristine white apron that accentuates her graceful silhouette. A delicate white bonnet perches atop her head, adding a touch of quaint charm. The upper half of her body is the focal point against a simple, unobtrusive background, ensuring all attention remains on her captivating presence and the subtle details of her attire.",
+        1,
+        false
+      ]
+    },
+    {
+      "id": 63,
+      "pos": {
+        "0": 1142,
+        "1": 74
+      },
+      "mode": 0,
+      "size": {
+        "0": 330,
+        "1": 574
+      },
+      "type": "CogVideoSampler",
+      "flags": {},
+      "order": 19,
+      "inputs": [
+        {
+          "link": 144,
+          "name": "model",
+          "type": "COGVIDEOMODEL",
+          "label": "model"
+        },
+        {
+          "link": 145,
+          "name": "positive",
+          "type": "CONDITIONING",
+          "label": "positive"
+        },
+        {
+          "link": 146,
+          "name": "negative",
+          "type": "CONDITIONING",
+          "label": "negative"
+        },
+        {
+          "link": null,
+          "name": "samples",
+          "type": "LATENT",
+          "label": "samples",
+          "shape": 7
+        },
+        {
+          "link": 147,
+          "name": "image_cond_latents",
+          "type": "LATENT",
+          "label": "image_cond_latents",
+          "shape": 7
+        },
+        {
+          "link": null,
+          "name": "context_options",
+          "type": "COGCONTEXT",
+          "label": "context_options",
+          "shape": 7
+        },
+        {
+          "link": null,
+          "name": "controlnet",
+          "type": "COGVIDECONTROLNET",
+          "label": "controlnet",
+          "shape": 7
+        },
+        {
+          "link": null,
+          "name": "tora_trajectory",
+          "type": "TORAFEATURES",
+          "label": "tora_trajectory",
+          "shape": 7
+        },
+        {
+          "link": null,
+          "name": "fastercache",
+          "type": "FASTERCACHEARGS",
+          "label": "fastercache",
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "label": "samples",
+          "links": [
+            148
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CogVideoSampler"
+      },
+      "widgets_values": [
+        49,
+        25,
+        6,
+        749696550002108,
+        "randomize",
+        "CogVideoXDDIM",
+        1
+      ]
+    }
+  ],
+  "config": {},
+  "groups": [
+    {
+      "color": "#3f789e",
+      "flags": {},
+      "title": "CogVideoX",
+      "locked": false,
+      "bounding": [
+        -34,
+        -190,
+        2684,
+        1393
+      ],
+      "font_size": 24
+    },
+    {
+      "color": "#3f789e",
+      "flags": {},
+      "title": "Animagine XL 3.1 img Gen",
+      "locked": false,
+      "bounding": [
+        -2431,
+        -31,
+        2293,
+        1165
+      ],
+      "font_size": 24
+    }
+  ],
+  "version": 0.4,
+  "_tensorNodes": [
+    {
+      "nodeId": "64",
+      "nodeName": "TensorArt_CheckpointLoader",
+      "fieldName": "ckpt_name",
+      "fieldValue": "706485991197825616",
+      "inputString": "[{\"name\":\"ckpt_name\",\"type\":\"button\",\"value\":\"706485991197825616\",\"options\":{}},{\"name\":\"tams_ckpt_name_options\",\"type\":\"combo\",\"value\":\"AnimagineXL - 3.1\",\"options\":{\"values\":[]}}]",
+      "fieldDisplayName": "AI Tool - CheckpointLoader"
+    },
+    {
+      "nodeId": "72",
+      "nodeName": "TensorArt_PromptText",
+      "fieldName": "Text",
+      "fieldValue": "deformed, blurry, depth of field, lowres, (bad), text, error, fewer, extra, missing, worst quality, jpeg artifacts, low quality, watermark, unfinished, displeasing, oldest, early, chromatic aberration, signature, extra digits, artistic error, username, scan, (interlocked fingers), (poorly drawn eyes), (out of frame), bad anatomy, bad hands, poorly drawn hands, mutated hands, extra fingers, four fingers, six fingers, extra limbs, extra hands, long fingers",
+      "inputString": "[{\"name\":\"Text\",\"type\":\"customtext\",\"value\":\"deformed, blurry, depth of field, lowres, (bad), text, error, fewer, extra, missing, worst quality, jpeg artifacts, low quality, watermark, unfinished, displeasing, oldest, early, chromatic aberration, signature, extra digits, artistic error, username, scan, (interlocked fingers), (poorly drawn eyes), (out of frame), bad anatomy, bad hands, poorly drawn hands, mutated hands, extra fingers, four fingers, six fingers, extra limbs, extra hands, long fingers\",\"options\":{\"hideOnZoom\":true,\"selectOn\":[\"focus\",\"click\"]}}]",
+      "fieldDisplayName": "Negative"
+    },
+    {
+      "nodeId": "83",
+      "nodeName": "TensorArt_Seed",
+      "fieldName": "seed",
+      "fieldValue": 581014961291376,
+      "inputString": "[{\"name\":\"seed\",\"type\":\"number\",\"value\":581014961291376,\"options\":{\"min\":0,\"max\":18446744073709552000,\"step\":10,\"round\":1,\"precision\":0}},{\"name\":\"control_after_generate\",\"type\":\"combo\",\"value\":\"randomize\",\"options\":{\"values\":[\"fixed\",\"increment\",\"decrement\",\"randomize\"],\"serialize\":false}}]",
+      "fieldDisplayName": "AI Tool - Seed"
+    },
+    {
+      "nodeId": "71",
+      "nodeName": "TensorArt_PromptText",
+      "fieldName": "Text",
+      "fieldValue": "masterpiece, best quality, very aesthetic, absurdres, 1girl, solo, nekomimi, big breasts, yellow eyes, gray hair, black dress, puffy sleeves, white apron, white bonnet, soft smile, upper body, simple background",
+      "inputString": "[{\"name\":\"Text\",\"type\":\"customtext\",\"value\":\"masterpiece, best quality, very aesthetic, absurdres, 1girl, solo, nekomimi, big breasts, yellow eyes, gray hair, black dress, puffy sleeves, white apron, white bonnet, soft smile, upper body, simple background\",\"options\":{\"hideOnZoom\":true,\"selectOn\":[\"focus\",\"click\"]}}]",
+      "fieldDisplayName": "Positive"
+    }
+  ],
+  "last_link_id": 170,
+  "last_node_id": 83
+}

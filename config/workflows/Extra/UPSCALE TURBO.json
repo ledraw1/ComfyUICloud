@@ -1,0 +1,692 @@
+{
+  "last_node_id": 338,
+  "last_link_id": 717,
+  "nodes": [
+    {
+      "id": 337,
+      "type": "UNETLoader",
+      "pos": {
+        "0": 23.16364288330078,
+        "1": 532.9964599609375
+      },
+      "size": {
+        "0": 233.61813354492188,
+        "1": 82
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            711
+          ],
+          "slot_index": 0,
+          "shape": 3,
+          "label": "MODEL"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "flux1-dev.sft",
+        "fp8_e4m3fn"
+      ]
+    },
+    {
+      "id": 335,
+      "type": "LoraLoaderModelOnly",
+      "pos": {
+        "0": 277.1636962890625,
+        "1": 525.9964599609375
+      },
+      "size": {
+        "0": 210,
+        "1": 82
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 711
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            712
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly"
+      },
+      "widgets_values": [
+        "FLUX\\flux_turbo_v1_1.safetensors",
+        1
+      ]
+    },
+    {
+      "id": 338,
+      "type": "VAELoader",
+      "pos": {
+        "0": 517.1633911132812,
+        "1": 540.9964599609375
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            713
+          ],
+          "slot_index": 0,
+          "shape": 3,
+          "label": "VAE"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "ae.sft"
+      ]
+    },
+    {
+      "id": 334,
+      "type": "CLIPTextEncodeFlux",
+      "pos": {
+        "0": 301.1636962890625,
+        "1": 1027.9964599609375
+      },
+      "size": {
+        "0": 337.1287841796875,
+        "1": 202.71368408203125
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 706,
+          "slot_index": 0,
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            709
+          ],
+          "slot_index": 0,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeFlux"
+      },
+      "widgets_values": [
+        "bad quality, poor quality, doll, disfigured, jpg, toy, bad anatomy, missing limbs, missing fingers, 3d, CGI, (worst quality, low quality:1.4), bad hands, bad photo, bad art, bad anatomy, bad hands, signature, text, error, cropped, jpeg artifacts, cartoon, 3d, bad art, deformed, poorly drawn, boring, sketch, watermark, ",
+        "",
+        3.5
+      ]
+    },
+    {
+      "id": 269,
+      "type": "UpscaleModelLoader",
+      "pos": {
+        "0": 690.587158203125,
+        "1": 533.60205078125
+      },
+      "size": {
+        "0": 258.16314697265625,
+        "1": 58
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            587
+          ],
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UpscaleModelLoader"
+      },
+      "widgets_values": [
+        "4x_NMKD-Siax_200k.pth"
+      ]
+    },
+    {
+      "id": 274,
+      "type": "Image Comparer (rgthree)",
+      "pos": {
+        "0": 994,
+        "1": 459
+      },
+      "size": {
+        "0": 696.8836669921875,
+        "1": 780.2409057617188
+      },
+      "flags": {
+        "pinned": false
+      },
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_a",
+          "type": "IMAGE",
+          "link": 715,
+          "slot_index": 0,
+          "dir": 3,
+          "label": "Image (Upscale or No Upscale)"
+        },
+        {
+          "name": "image_b",
+          "type": "IMAGE",
+          "link": 685,
+          "slot_index": 1,
+          "dir": 3,
+          "label": "Image (Original)"
+        }
+      ],
+      "outputs": [],
+      "title": "Image Comparer",
+      "properties": {
+        "comparer_mode": "Slide"
+      },
+      "widgets_values": [
+        [
+          {
+            "name": "A",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_qtpmg_00001_.png&type=temp&subfolder=&rand=0.48653669522417786"
+          },
+          {
+            "name": "B",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_qtpmg_00002_.png&type=temp&subfolder=&rand=0.3074922499556685"
+          }
+        ]
+      ],
+      "shape": 2
+    },
+    {
+      "id": 332,
+      "type": "SaveImage",
+      "pos": {
+        "0": 1017,
+        "1": 419
+      },
+      "size": {
+        "0": 985.3012084960938,
+        "1": 1060.3828125
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 716
+        }
+      ],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "Upscale/FLUX"
+      ]
+    },
+    {
+      "id": 298,
+      "type": "Load image with metadata [Crystools]",
+      "pos": {
+        "0": 25,
+        "1": 65
+      },
+      "size": {
+        "0": 615.5285034179688,
+        "1": 366.63604736328125
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            684,
+            685
+          ],
+          "slot_index": 0,
+          "shape": 3
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "prompt",
+          "type": "JSON",
+          "links": [],
+          "slot_index": 2,
+          "shape": 3
+        },
+        {
+          "name": "Metadata RAW",
+          "type": "METADATA_RAW",
+          "links": [],
+          "slot_index": 3,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Load image with metadata [Crystools]"
+      },
+      "widgets_values": [
+        "FLUX_turbo_00021_.png",
+        "image"
+      ]
+    },
+    {
+      "id": 267,
+      "type": "UltimateSDUpscale",
+      "pos": {
+        "0": 687,
+        "1": 646
+      },
+      "size": {
+        "0": 270.44793701171875,
+        "1": 586
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 684
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 712
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 708
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 709
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 713
+        },
+        {
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 587,
+          "slot_index": 5
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": 598,
+          "widget": {
+            "name": "seed"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            715,
+            716
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UltimateSDUpscale"
+      },
+      "widgets_values": [
+        2,
+        846909253260973,
+        "randomize",
+        8,
+        1,
+        "dpmpp_2m",
+        "sgm_uniform",
+        0.15,
+        "Chess",
+        1024,
+        1024,
+        8,
+        32,
+        "None",
+        1,
+        64,
+        8,
+        16,
+        true,
+        false
+      ]
+    },
+    {
+      "id": 272,
+      "type": "PrimitiveNode",
+      "pos": {
+        "0": 522,
+        "1": 584
+      },
+      "size": {
+        "0": 291.930908203125,
+        "1": 82
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": [
+            598
+          ],
+          "slot_index": 0,
+          "widget": {
+            "name": "seed"
+          }
+        }
+      ],
+      "title": "Seed",
+      "properties": {
+        "Run widget replace on values": false
+      },
+      "widgets_values": [
+        846909253260973,
+        "randomize"
+      ]
+    },
+    {
+      "id": 336,
+      "type": "DualCLIPLoader",
+      "pos": {
+        "0": 24,
+        "1": 1031
+      },
+      "size": {
+        "0": 266.0287780761719,
+        "1": 106
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            706,
+            710
+          ],
+          "slot_index": 0,
+          "shape": 3,
+          "label": "CLIP"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DualCLIPLoader"
+      },
+      "widgets_values": [
+        "clip_l.safetensors",
+        "t5xxl_fp8_e4m3fn.safetensors",
+        "flux"
+      ]
+    },
+    {
+      "id": 333,
+      "type": "CLIPTextEncodeFlux",
+      "pos": {
+        "0": 23.16364288330078,
+        "1": 665.9964599609375
+      },
+      "size": {
+        "0": 621.7288208007812,
+        "1": 310.9136962890625
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 710,
+          "slot_index": 0,
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            708
+          ],
+          "slot_index": 0,
+          "shape": 3,
+          "label": "CONDITIONING"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncodeFlux"
+      },
+      "widgets_values": [
+        "high quality, masterpiece, cinematic exposition, absurdres, high resolution, (8k resolution), 8k, 8kres, 8k res, high details, detailed and intricate, intricate details, high intricate details, absurd amount of details, super resolution, ultra hd, megapixel, Extreme Wide Shot,(dark theme:1.3),",
+        "",
+        3.5
+      ]
+    }
+  ],
+  "links": [
+    [
+      587,
+      269,
+      0,
+      267,
+      5,
+      "UPSCALE_MODEL"
+    ],
+    [
+      598,
+      272,
+      0,
+      267,
+      6,
+      "INT"
+    ],
+    [
+      684,
+      298,
+      0,
+      267,
+      0,
+      "IMAGE"
+    ],
+    [
+      685,
+      298,
+      0,
+      274,
+      1,
+      "IMAGE"
+    ],
+    [
+      706,
+      336,
+      0,
+      334,
+      0,
+      "CLIP"
+    ],
+    [
+      708,
+      333,
+      0,
+      267,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      709,
+      334,
+      0,
+      267,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      710,
+      336,
+      0,
+      333,
+      0,
+      "CLIP"
+    ],
+    [
+      711,
+      337,
+      0,
+      335,
+      0,
+      "MODEL"
+    ],
+    [
+      712,
+      335,
+      0,
+      267,
+      1,
+      "MODEL"
+    ],
+    [
+      713,
+      338,
+      0,
+      267,
+      4,
+      "VAE"
+    ],
+    [
+      715,
+      267,
+      0,
+      274,
+      0,
+      "IMAGE"
+    ],
+    [
+      716,
+      267,
+      0,
+      332,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "Load Models",
+      "bounding": [
+        4,
+        453,
+        655,
+        794
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "Ultimate SD",
+      "bounding": [
+        666,
+        453,
+        309,
+        792
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.7627768444385503,
+      "offset": [
+        118.69928213619893,
+        121.28313638387652
+      ]
+    }
+  },
+  "version": 0.4
+}

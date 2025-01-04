@@ -1,0 +1,741 @@
+{
+  "extra": {
+    "ds": {
+      "scale": 1.1,
+      "offset": [
+        96.86375434913498,
+        88.97095236084817
+      ]
+    }
+  },
+  "links": [
+    [
+      17,
+      5,
+      0,
+      3,
+      3,
+      "LATENT"
+    ],
+    [
+      18,
+      7,
+      0,
+      3,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      22,
+      4,
+      2,
+      8,
+      1,
+      "VAE"
+    ],
+    [
+      24,
+      3,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      27,
+      10,
+      0,
+      3,
+      0,
+      "MODEL"
+    ],
+    [
+      30,
+      8,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      35,
+      4,
+      0,
+      12,
+      0,
+      "MODEL"
+    ],
+    [
+      37,
+      12,
+      0,
+      11,
+      0,
+      "MODEL"
+    ],
+    [
+      49,
+      10,
+      1,
+      7,
+      0,
+      "CLIP"
+    ],
+    [
+      51,
+      4,
+      1,
+      12,
+      1,
+      "CLIP"
+    ],
+    [
+      54,
+      11,
+      0,
+      10,
+      0,
+      "MODEL"
+    ],
+    [
+      55,
+      11,
+      1,
+      10,
+      1,
+      "CLIP"
+    ],
+    [
+      57,
+      12,
+      1,
+      11,
+      1,
+      "CLIP"
+    ],
+    [
+      58,
+      10,
+      1,
+      17,
+      0,
+      "CLIP"
+    ],
+    [
+      60,
+      10,
+      1,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      62,
+      17,
+      0,
+      3,
+      1,
+      "CONDITIONING"
+    ]
+  ],
+  "nodes": [
+    {
+      "id": 14,
+      "pos": {
+        "0": 919,
+        "1": 538
+      },
+      "mode": 0,
+      "size": {
+        "0": 427.6060791015625,
+        "1": 197.55116271972656
+      },
+      "type": "Note",
+      "color": "#432",
+      "flags": {
+        "pinned": true
+      },
+      "order": 0,
+      "title": "tip",
+      "inputs": [],
+      "bgcolor": "#653",
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "tip: \"long and beatiful pink hair\" - is fine for FLUX, but XL \"long hair, beatiful hair, pink hair\" makes better results.\n\ntip2: If there is any picture you want to make, download the picture and upload picture copilot or chatGPT ask \"I want to make this image, but can you write the prompt in detail?\" than you can remake the picture with the words\n\nbest_quality,masterpiece,shiny skin,newest,very aesthetic,absurdres,Visual impact,giving the poster a dynamic and visually striking appearance,impactful picture,offcial art,movie perspective,depth of field,dramatic shadows, A shot with tension,colorful,splash of color, "
+      ]
+    },
+    {
+      "id": 3,
+      "pos": {
+        "0": 1388,
+        "1": 416
+      },
+      "mode": 0,
+      "size": [
+        315,
+        262
+      ],
+      "type": "KSampler",
+      "color": "#322",
+      "flags": {},
+      "order": 10,
+      "inputs": [
+        {
+          "link": 27,
+          "name": "model",
+          "type": "MODEL",
+          "label": "모델"
+        },
+        {
+          "link": 62,
+          "name": "positive",
+          "type": "CONDITIONING",
+          "label": "포지티브"
+        },
+        {
+          "link": 18,
+          "name": "negative",
+          "type": "CONDITIONING",
+          "label": "네거티브"
+        },
+        {
+          "link": 17,
+          "name": "latent_image",
+          "type": "LATENT",
+          "label": "레이턴트"
+        }
+      ],
+      "locked": true,
+      "bgcolor": "#533",
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "label": "레이턴트",
+          "links": [
+            24
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        1048460438749576,
+        "randomize",
+        25,
+        8,
+        "euler",
+        "karras",
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "pos": {
+        "0": 1390,
+        "1": 726
+      },
+      "mode": 0,
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "type": "EmptyLatentImage",
+      "flags": {},
+      "order": 1,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "label": "레이턴트",
+          "links": [
+            17
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1024,
+        1536,
+        1
+      ]
+    },
+    {
+      "id": 8,
+      "pos": {
+        "0": 670,
+        "1": 826
+      },
+      "mode": 0,
+      "size": [
+        210,
+        46
+      ],
+      "type": "VAEDecode",
+      "flags": {},
+      "order": 11,
+      "inputs": [
+        {
+          "link": 24,
+          "name": "samples",
+          "type": "LATENT",
+          "label": "레이턴트"
+        },
+        {
+          "link": 22,
+          "name": "vae",
+          "type": "VAE",
+          "label": "VAE"
+        }
+      ],
+      "locked": true,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "label": "이미지",
+          "links": [
+            30
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 9,
+      "pos": {
+        "0": 1399,
+        "1": 98
+      },
+      "mode": 0,
+      "size": {
+        "0": 210,
+        "1": 270
+      },
+      "type": "SaveImage",
+      "flags": {
+        "collapsed": false
+      },
+      "order": 12,
+      "inputs": [
+        {
+          "link": 30,
+          "name": "images",
+          "type": "IMAGE",
+          "label": "이미지"
+        }
+      ],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "TensorArt"
+      ]
+    },
+    {
+      "id": 6,
+      "pos": {
+        "0": 925,
+        "1": 25
+      },
+      "mode": 0,
+      "size": [
+        441.7384338378906,
+        94.60067749023438
+      ],
+      "type": "CLIPTextEncode",
+      "color": "#322",
+      "flags": {},
+      "order": 9,
+      "inputs": [
+        {
+          "link": 60,
+          "name": "clip",
+          "type": "CLIP",
+          "label": "클립"
+        }
+      ],
+      "locked": true,
+      "bgcolor": "#533",
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "label": "조건 설정",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "best_quality,masterpiece,shiny skin,newest,very aesthetic,absurdres,Visual impact,giving the poster a dynamic and visually striking appearance,impactful picture,offcial art,movie perspective,depth of field,dramatic shadows, A shot with tension,colorful,splash of color, "
+      ]
+    },
+    {
+      "id": 13,
+      "pos": {
+        "0": 926,
+        "1": 11
+      },
+      "mode": 0,
+      "size": {
+        "0": 436.2728271484375,
+        "1": 385.945068359375
+      },
+      "type": "Note",
+      "color": "#432",
+      "flags": {
+        "pinned": true
+      },
+      "order": 2,
+      "inputs": [],
+      "bgcolor": "#653",
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "(A shot with tension,colorful,splash of color) <- you can delete if result is not satisfied\n\n****for the details**** You can erase everything below this, but more details makes detail arts.\n\"character's full name\" - google chararter's full English name and copy here\n\"skin color\",  - white, pale, black etc.. you can skip\n\"hair color\",  - important. if you want several colored hair, put in \"two-tone hair\"\n                      for example, (pink hair, blonde hair, two-tone hair)\n\"hair shape\" - bangs, short, long, very long, ponytale, twintale, flowing.. etc\n\"color of theme if you want\", - picture's entire atmosphere, you can skip\n\"glowing eyes\", - delete it if AI doesn't make eyes well. use \"closed eyes\" for last way\n\"background name\" - if there is nothing you want, 'black or white' background recommended. you can use city, forest, sky, space, castle, cloud etc..\n\"facial expression\" - such as smile, blush, angry, sad etc..\n\"accesaries\" - such as necklace, earrings, hair ornament, lipstic etc..\n\"clothes\" - color of shirts, dress, long sleeve, evening gown,high heels, fishnet pantyhose etc..\n\"camera angle\" - from below, from side, aerial view, from behind, close up, upperbody, eye focus, face focus etc.."
+      ]
+    },
+    {
+      "id": 4,
+      "pos": {
+        "0": 57,
+        "1": 45
+      },
+      "mode": 0,
+      "size": {
+        "0": 261.22991943359375,
+        "1": 122.00390625
+      },
+      "type": "CheckpointLoaderSimple",
+      "color": "#322",
+      "flags": {},
+      "order": 3,
+      "inputs": [],
+      "bgcolor": "#533",
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "label": "모델",
+          "links": [
+            35
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "label": "클립",
+          "links": [
+            51
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "label": "VAE",
+          "links": [
+            22
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "802336991090864400",
+        "NTR MIX | illustrious-XL | Noob-XL - V777"
+      ]
+    },
+    {
+      "id": 17,
+      "pos": {
+        "0": 402,
+        "1": 33
+      },
+      "mode": 0,
+      "size": {
+        "0": 474.8292541503906,
+        "1": 404.8127746582031
+      },
+      "type": "CLIPTextEncode",
+      "flags": {},
+      "order": 8,
+      "inputs": [
+        {
+          "link": 58,
+          "name": "clip",
+          "type": "CLIP",
+          "label": "클립"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "label": "조건 설정",
+          "links": [
+            62
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "put your prompt here!"
+      ]
+    },
+    {
+      "id": 11,
+      "pos": {
+        "0": 2,
+        "1": 243
+      },
+      "mode": 0,
+      "size": [
+        315,
+        150
+      ],
+      "type": "LoraLoader",
+      "color": "#322",
+      "flags": {},
+      "order": 5,
+      "inputs": [
+        {
+          "link": 37,
+          "name": "model",
+          "type": "MODEL",
+          "label": "모델"
+        },
+        {
+          "link": 57,
+          "name": "clip",
+          "type": "CLIP",
+          "label": "클립"
+        }
+      ],
+      "locked": true,
+      "bgcolor": "#533",
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "label": "모델",
+          "links": [
+            54
+          ],
+          "shape": 3
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "label": "클립",
+          "links": [
+            55
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoader"
+      },
+      "widgets_values": [
+        "799734142125352061",
+        "Aesthetic Quality Modifiers - Best Quality - 1",
+        0.7000000000000001,
+        0.7000000000000001
+      ]
+    },
+    {
+      "id": 10,
+      "pos": {
+        "0": 1,
+        "1": 233
+      },
+      "mode": 0,
+      "size": [
+        315,
+        150
+      ],
+      "type": "LoraLoader",
+      "color": "#322",
+      "flags": {},
+      "order": 6,
+      "inputs": [
+        {
+          "link": 54,
+          "name": "model",
+          "type": "MODEL",
+          "label": "모델"
+        },
+        {
+          "link": 55,
+          "name": "clip",
+          "type": "CLIP",
+          "label": "클립"
+        }
+      ],
+      "locked": true,
+      "bgcolor": "#533",
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "label": "모델",
+          "links": [
+            27
+          ],
+          "shape": 3
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "label": "클립",
+          "links": [
+            49,
+            58,
+            60
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoader"
+      },
+      "widgets_values": [
+        "796238356573917915",
+        "Aesthetic Quality Modifiers - Masterpiece - 1.0",
+        0.7000000000000001,
+        0.7000000000000001
+      ]
+    },
+    {
+      "id": 12,
+      "pos": {
+        "0": 3,
+        "1": 240
+      },
+      "mode": 0,
+      "size": [
+        315,
+        150
+      ],
+      "type": "LoraLoader",
+      "color": "#322",
+      "flags": {},
+      "order": 4,
+      "inputs": [
+        {
+          "link": 35,
+          "name": "model",
+          "type": "MODEL",
+          "label": "모델"
+        },
+        {
+          "link": 51,
+          "name": "clip",
+          "type": "CLIP",
+          "label": "클립"
+        }
+      ],
+      "locked": true,
+      "bgcolor": "#533",
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "label": "모델",
+          "links": [
+            37
+          ],
+          "shape": 3
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "label": "클립",
+          "links": [
+            57
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoraLoader"
+      },
+      "widgets_values": [
+        "804339137340611922",
+        "Pony: People's Works - v5_noobVv0.65S",
+        0.8,
+        0.8
+      ]
+    },
+    {
+      "id": 7,
+      "pos": {
+        "0": 422,
+        "1": 515
+      },
+      "mode": 0,
+      "size": [
+        435.151611328125,
+        262.12689208984375
+      ],
+      "type": "CLIPTextEncode",
+      "color": "#322",
+      "flags": {},
+      "order": 7,
+      "inputs": [
+        {
+          "link": 49,
+          "name": "clip",
+          "type": "CLIP",
+          "label": "클립"
+        }
+      ],
+      "locked": true,
+      "bgcolor": "#533",
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "label": "조건 설정",
+          "links": [
+            18
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "bad quality,worst quality,normal quality,(six toes),(six fingers),(muscle),(score_4,score_3,score_2,score_1),(bad hands),(bad feet),(censored),(worst quality, low quality, sketch:1.1),error,bad anatomy,bad hands,watermark,ugly,distorted,censored,lowres,multiple views,abstract,signature,furry,anthro,bkub,2koma,4koma,comic,manga,bad forehead"
+      ]
+    }
+  ],
+  "config": {},
+  "groups": [],
+  "version": 0.4,
+  "last_link_id": 62,
+  "last_node_id": 17
+}

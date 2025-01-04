@@ -1,0 +1,283 @@
+{
+  "extra": {
+    "ds": {
+      "scale": 0.6830134553650705,
+      "offset": [
+        205.3455000000002,
+        128.48420000000016
+      ]
+    }
+  },
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "IMAGE"
+    ],
+    [
+      2,
+      3,
+      0,
+      2,
+      1,
+      "FL2MODEL"
+    ],
+    [
+      3,
+      2,
+      2,
+      4,
+      0,
+      "*"
+    ],
+    [
+      4,
+      2,
+      2,
+      5,
+      0,
+      "STRING"
+    ]
+  ],
+  "nodes": [
+    {
+      "id": 2,
+      "pos": {
+        "0": 2502,
+        "1": 497
+      },
+      "mode": 0,
+      "size": {
+        "0": 400,
+        "1": 352
+      },
+      "type": "Florence2Run",
+      "flags": {},
+      "order": 2,
+      "inputs": [
+        {
+          "link": 1,
+          "name": "image",
+          "type": "IMAGE",
+          "label": "image"
+        },
+        {
+          "link": 2,
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "label": "florence2_model"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "label": "image"
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "label": "mask"
+        },
+        {
+          "name": "caption",
+          "type": "STRING",
+          "label": "caption",
+          "links": [
+            3,
+            4
+          ],
+          "slot_index": 2
+        },
+        {
+          "name": "data",
+          "type": "JSON",
+          "label": "data"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Florence2Run"
+      },
+      "widgets_values": [
+        "",
+        "more_detailed_caption",
+        true,
+        false,
+        1024,
+        3,
+        true,
+        "",
+        218042358096102,
+        "randomize"
+      ]
+    },
+    {
+      "id": 4,
+      "pos": {
+        "0": 3214,
+        "1": 497
+      },
+      "mode": 0,
+      "size": {
+        "0": 210,
+        "1": 26
+      },
+      "type": "easy cleanGpuUsed",
+      "flags": {},
+      "order": 3,
+      "inputs": [
+        {
+          "link": 3,
+          "name": "anything",
+          "type": "*",
+          "label": "输入任何"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "label": "output"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy cleanGpuUsed"
+      }
+    },
+    {
+      "id": 5,
+      "pos": {
+        "0": 3020,
+        "1": 699
+      },
+      "mode": 0,
+      "size": [
+        330.277099609375,
+        227.6939392089844
+      ],
+      "type": "ShowText|pysssss",
+      "flags": {},
+      "order": 4,
+      "inputs": [
+        {
+          "link": 4,
+          "name": "text",
+          "type": "STRING",
+          "label": "文本",
+          "widget": {
+            "name": "text"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "label": "字符串",
+          "links": [],
+          "shape": 6,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "",
+        "The image is an illustration of a young girl with blue hair and a pink bow on her head. She is wearing a black and white maid outfit with a white apron and a black bow at the waist. The outfit has a high collar and long sleeves. The girl is sitting on a white background with her legs crossed and her hands resting on her knees. She has a peaceful expression on her face and is looking off to the side. The overall style of the outfit is anime-inspired."
+      ]
+    },
+    {
+      "id": 3,
+      "pos": {
+        "0": 2128,
+        "1": 864
+      },
+      "mode": 0,
+      "size": {
+        "0": 326.6355895996094,
+        "1": 106
+      },
+      "type": "DownloadAndLoadFlorence2Model",
+      "flags": {},
+      "order": 0,
+      "inputs": [
+        {
+          "link": null,
+          "name": "lora",
+          "type": "PEFTLORA",
+          "label": "lora",
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "label": "florence2_model",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DownloadAndLoadFlorence2Model"
+      },
+      "widgets_values": [
+        "microsoft/Florence-2-large",
+        "fp16",
+        "sdpa"
+      ]
+    },
+    {
+      "id": 1,
+      "pos": {
+        "0": 856,
+        "1": 319
+      },
+      "mode": 0,
+      "size": {
+        "0": 1082.7037353515625,
+        "1": 1206.5555419921875
+      },
+      "type": "LoadImage",
+      "flags": {},
+      "order": 1,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "label": "图像",
+          "links": [
+            1
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "label": "遮罩",
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "https://tusi-sf-sig.oss-cn-shanghai.aliyuncs.com/workspace/workflow_image2image/608579694585063410/1uFaXg7Ddvi2vLSvhGbzX.jpg",
+        "image"
+      ]
+    }
+  ],
+  "config": {},
+  "groups": [],
+  "version": 0.4,
+  "_tensorNodes": [],
+  "last_link_id": 4,
+  "last_node_id": 5
+}

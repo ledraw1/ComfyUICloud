@@ -2,21 +2,43 @@
 
 # AI-Dock + ComfyUI Docker Image
 
+# Overview
+# --------
+# This Docker image allows you to run ComfyUI in a highly-configurable, cloud-first AI-Dock container.
+# ComfyUI is a popular user interface for AI models, and this image makes it easy to deploy and manage.
+
+# What is ComfyUI?
+# ----------------
+# ComfyUI is a user-friendly interface for interacting with AI models. It provides a simple and intuitive way to manage and deploy AI models.
+
 Run [ComfyUI](https://github.com/comfyanonymous/ComfyUI) in a highly-configurable, cloud-first AI-Dock container.
 
->[!NOTE]
->These images do not bundle models or third-party configurations. You should use a [provisioning script](https://github.com/ai-dock/base-image/wiki/4.0-Running-the-Image#provisioning-script) to automatically configure your container. You can find examples, including `SD3` & `FLUX.1` setup, in `config/provisioning`.
-
+> [!NOTE]
+> These images do not bundle models or third-party configurations. You should use a [provisioning script](https://github.com/ai-dock/base-image/wiki/4.0-Running-the-Image#provisioning-script) to automatically configure your container. You can find examples, including `SD3` & `FLUX.1` setup, in `config/provisioning`.
 
 ## Documentation
 
-All AI-Dock containers share a common base which is designed to make running on cloud services such as [vast.ai](https://link.ai-dock.org/vast.ai) as straightforward and user friendly as possible.
+# Introduction
+# ------------
+# All AI-Dock containers share a common base which is designed to make running on cloud services such as [vast.ai](https://link.ai-dock.org/vast.ai) as straightforward and user friendly as possible.
 
-Common features and options are documented in the [base wiki](https://github.com/ai-dock/base-image/wiki) but any additional features unique to this image will be detailed below.
+# What is AI-Dock?
+# ----------------
+# AI-Dock is a cloud-first containerization platform for AI models. It provides a simple and intuitive way to deploy and manage AI models in the cloud.
+
+All AI-Dock containers share a common base which is designed to make running on cloud services such as [vast.ai](https://link.ai-dock.org/vast.ai) as straightforward and user friendly as possible.
 
 #### Version Tags
 
-The `:latest` tag points to `:latest-cuda` and will relate to a stable and tested version.  There may be more recent builds
+# Versioning
+# ----------
+# The `:latest` tag points to `:latest-cuda` and will relate to a stable and tested version. There may be more recent builds
+
+# What are version tags?
+# ----------------------
+# Version tags are used to identify different versions of the AI-Dock image. They can be used to specify a specific version of the image to use.
+
+The `:latest` tag points to `:latest-cuda` and will relate to a stable and tested version. There may be more recent builds
 
 Tags follow these patterns:
 
@@ -29,12 +51,27 @@ Tags follow these patterns:
 ##### _CPU_
 - `:cpu-[ubuntu-version]`
 
+# Image Variants
+# --------------
+# Browse [ghcr.io](https://github.com/ai-dock/comfyui/pkgs/container/comfyui) for an image suitable for your target environment. Alternatively, view a select range of [CUDA](https://hub.docker.com/r/aidockorg/comfyui-cuda) and [ROCm](https://hub.docker.com/r/aidockorg/comfyui-rocm) builds at DockerHub.
+
+# What are image variants?
+# ------------------------
+# Image variants are different versions of the AI-Dock image that are optimized for specific environments or use cases.
 
 Browse [ghcr.io](https://github.com/ai-dock/comfyui/pkgs/container/comfyui) for an image suitable for your target environment. Alternatively, view a select range of [CUDA](https://hub.docker.com/r/aidockorg/comfyui-cuda) and [ROCm](https://hub.docker.com/r/aidockorg/comfyui-rocm) builds at DockerHub.
 
 Supported Platforms: `NVIDIA CUDA`, `AMD ROCm`, `CPU`
 
 ## Additional Environment Variables
+
+# Environment Variables
+# ---------------------
+# The following environment variables can be used to customize the behavior of the container.
+
+# What are environment variables?
+# -----------------------------
+# Environment variables are used to customize the behavior of the container. They can be used to specify settings or options that affect how the container runs.
 
 | Variable                 | Description |
 | ------------------------ | ----------- |
@@ -55,7 +92,6 @@ See the base environment variables [here](https://github.com/ai-dock/base-image/
 | `comfyui`      | ComfyUI and dependencies |
 | `api`          | ComfyUI API wrapper and dependencies |
 
-
 The `comfyui` environment will be activated on shell login.
 
 ~~See the base micromamba environments [here](https://github.com/ai-dock/base-image/wiki/1.0-Included-Software#installed-micromamba-environments).~~
@@ -71,7 +107,6 @@ The service will launch on port `8188` unless you have specified an override wit
 You can set startup flags by using variable `COMFYUI_ARGS`.
 
 To manage this service you can use `supervisorctl [start|stop|restart] comfyui`.
-
 
 ### ComfyUI API Wrapper
 

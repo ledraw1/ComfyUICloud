@@ -1,0 +1,396 @@
+{
+  "extra": {
+    "ds": {
+      "scale": 1,
+      "offset": [
+        0.7381818181816016,
+        -15.013636363636408
+      ]
+    }
+  },
+  "links": [
+    [
+      1,
+      4,
+      0,
+      3,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      5,
+      0,
+      3,
+      3,
+      "LATENT"
+    ],
+    [
+      3,
+      4,
+      1,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      4,
+      6,
+      0,
+      3,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      5,
+      4,
+      1,
+      7,
+      0,
+      "CLIP"
+    ],
+    [
+      6,
+      7,
+      0,
+      3,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      7,
+      3,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      8,
+      4,
+      2,
+      8,
+      1,
+      "VAE"
+    ],
+    [
+      9,
+      8,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "nodes": [
+    {
+      "id": 9,
+      "pos": {
+        "0": 1451,
+        "1": 189
+      },
+      "mode": 0,
+      "size": {
+        "0": 210,
+        "1": 270
+      },
+      "type": "SaveImage",
+      "flags": {},
+      "order": 6,
+      "inputs": [
+        {
+          "link": 9,
+          "name": "images",
+          "type": "IMAGE",
+          "label": "images"
+        }
+      ],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "TensorArt"
+      ]
+    },
+    {
+      "id": 4,
+      "pos": {
+        "0": 26,
+        "1": 474
+      },
+      "mode": 0,
+      "size": {
+        "0": 315,
+        "1": 122
+      },
+      "type": "CheckpointLoaderSimple",
+      "flags": {},
+      "order": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "label": "MODEL",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "label": "CLIP",
+          "links": [
+            3,
+            5
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "label": "VAE",
+          "links": [
+            8
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "802213489306373779",
+        "Christmas Walkthrough Game Character Design - v1.0"
+      ]
+    },
+    {
+      "id": 8,
+      "pos": {
+        "0": 1209,
+        "1": 188
+      },
+      "mode": 0,
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "type": "VAEDecode",
+      "flags": {},
+      "order": 5,
+      "inputs": [
+        {
+          "link": 7,
+          "name": "samples",
+          "type": "LATENT",
+          "label": "samples"
+        },
+        {
+          "link": 8,
+          "name": "vae",
+          "type": "VAE",
+          "label": "vae"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "label": "IMAGE",
+          "links": [
+            9
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 5,
+      "pos": {
+        "0": 473,
+        "1": 609
+      },
+      "mode": 0,
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "type": "EmptyLatentImage",
+      "flags": {},
+      "order": 1,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "label": "LATENT",
+          "links": [
+            2
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1024,
+        1536,
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "pos": {
+        "0": 415,
+        "1": 186
+      },
+      "mode": 0,
+      "size": {
+        "0": 422.8450317382813,
+        "1": 164.31304931640625
+      },
+      "type": "CLIPTextEncode",
+      "flags": {},
+      "order": 2,
+      "inputs": [
+        {
+          "link": 3,
+          "name": "clip",
+          "type": "CLIP",
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "label": "CONDITIONING",
+          "links": [
+            4
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "A graceful woman with long black hair, wearing an elegant, off-shoulder white Christmas dress with silver snowflake patterns. She stands amidst softly falling snow, holding a glowing crystal ornament. Her expression is serene, and the background is a simple frosty blue with faint sparkles."
+      ]
+    },
+    {
+      "id": 7,
+      "pos": {
+        "0": 413,
+        "1": 389
+      },
+      "mode": 0,
+      "size": {
+        "0": 425.2780151367187,
+        "1": 180.6060791015625
+      },
+      "type": "CLIPTextEncode",
+      "flags": {},
+      "order": 3,
+      "inputs": [
+        {
+          "link": 5,
+          "name": "clip",
+          "type": "CLIP",
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "label": "CONDITIONING",
+          "links": [
+            6
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "low quality, worst quality "
+      ]
+    },
+    {
+      "id": 3,
+      "pos": {
+        "0": 864,
+        "1": 191
+      },
+      "mode": 0,
+      "size": {
+        "0": 315,
+        "1": 262
+      },
+      "type": "KSampler",
+      "flags": {},
+      "order": 4,
+      "inputs": [
+        {
+          "link": 1,
+          "name": "model",
+          "type": "MODEL",
+          "label": "model"
+        },
+        {
+          "link": 4,
+          "name": "positive",
+          "type": "CONDITIONING",
+          "label": "positive"
+        },
+        {
+          "link": 6,
+          "name": "negative",
+          "type": "CONDITIONING",
+          "label": "negative"
+        },
+        {
+          "link": 2,
+          "name": "latent_image",
+          "type": "LATENT",
+          "label": "latent_image"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "label": "LATENT",
+          "links": [
+            7
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        806905715592957,
+        "randomize",
+        20,
+        5.5,
+        "euler_ancestral",
+        "normal",
+        1
+      ]
+    }
+  ],
+  "config": {},
+  "groups": [],
+  "version": 0.4,
+  "_tensorNodes": [],
+  "last_link_id": 9,
+  "last_node_id": 9
+}
